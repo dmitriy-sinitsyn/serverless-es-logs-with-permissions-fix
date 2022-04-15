@@ -213,24 +213,24 @@ class ServerlessEsLogsPlugin {
       const logGroupName = template.Resources[logGroupLogicalId].Properties.LogGroupName;
 
       // Create permission for subscription filter
-      const permission = new LambdaPermissionBuilder()
-        .withFunctionName({
-          'Fn::GetAtt': [
-            this.logProcesserLogicalId,
-            'Arn',
-          ],
-        })
-        .withPrincipal({
-          'Fn::Sub': 'logs.${AWS::Region}.amazonaws.com',
-        })
-        .withSourceArn({
-          'Fn::GetAtt': [
-            logGroupLogicalId,
-            'Arn',
-          ],
-        })
-        .withDependsOn([ this.logProcesserLogicalId, logGroupLogicalId ])
-        .build();
+//       const permission = new LambdaPermissionBuilder()
+//         .withFunctionName({
+//           'Fn::GetAtt': [
+//             this.logProcesserLogicalId,
+//             'Arn',
+//           ],
+//         })
+//         .withPrincipal({
+//           'Fn::Sub': 'logs.${AWS::Region}.amazonaws.com',
+//         })
+//         .withSourceArn({
+//           'Fn::GetAtt': [
+//             logGroupLogicalId,
+//             'Arn',
+//           ],
+//         })
+//         .withDependsOn([ this.logProcesserLogicalId, logGroupLogicalId ])
+//         .build();
 
       // Create subscription filter
       const subscriptionFilter = new SubscriptionFilterBuilder()
